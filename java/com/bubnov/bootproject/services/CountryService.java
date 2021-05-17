@@ -18,9 +18,7 @@ public class CountryService {
         this.repository = repository;
     }
 
-    public List<Country> findAllCountries() {
-        return repository.findAll();
-    }
+    public List<Country> findAllCountries() { return repository.findAll(); }
 
     public Country findCountryById(String id) {
         Optional<Country> country = repository.findById(id);

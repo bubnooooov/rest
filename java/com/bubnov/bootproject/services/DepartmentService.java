@@ -1,5 +1,6 @@
 package com.bubnov.bootproject.services;
 
+import com.bubnov.bootproject.entities.Country;
 import com.bubnov.bootproject.entities.Department;
 import com.bubnov.bootproject.repositories.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,21 +25,16 @@ public class DepartmentService {
 
     public Department findDepartmentById(String id) {
         Optional<Department> department = repository.findById(id);
-        return department.orElseGet(Department::new);
+        if (department.isPresent()) return department.get();
+        else throw new NullPointerException("Department with id " + id + " not found in database");
     }
 
     public void saveOrUpdateDepartment(Department department) {
         repository.save(department);
     }
 
-    public boolean deleteDepartment(String id) {
+    public void deleteDepartment(String id) {
         Department department = findDepartmentById(id);
-
-        if (department != null) {
-            repository.delete(department);
-            return true;
-        }
-
-        else return false;
+        repository.delete(department);
     }
 }
