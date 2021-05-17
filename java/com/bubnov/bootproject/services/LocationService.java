@@ -24,21 +24,16 @@ public class LocationService {
 
     public Location findLocationById(int id) {
         Optional<Location> location = repository.findById(id);
-        return location.orElseGet(Location::new);
+        if (location.isPresent()) return location.get();
+        else throw new NullPointerException("Location with id " + id + " not found in database");
     }
 
     public void saveOrUpdateLocation(Location location) {
         repository.save(location);
     }
 
-    public boolean deleteLocation(int id) {
+    public void deleteLocation(int id) {
         Location location = findLocationById(id);
-
-        if (location != null) {
-            repository.delete(location);
-            return true;
-        }
-
-        else return false;
+        repository.delete(location);
     }
 }

@@ -24,21 +24,16 @@ public class CountryService {
 
     public Country findCountryById(String id) {
         Optional<Country> country = repository.findById(id);
-        return country.orElseGet(Country::new);
+        if (country.isPresent()) return country.get();
+        else throw new NullPointerException("Country with id " + id + " not found in database");
     }
 
     public void saveOrUpdateCountry(Country country) {
         repository.save(country);
     }
 
-    public boolean deleteCountry(String id) {
+    public void deleteCountry(String id) {
         Country country = findCountryById(id);
-
-        if (country.getCountryName() != null) {
-            repository.delete(country);
-            return true;
-        }
-
-        else return false;
+        repository.delete(country);
     }
 }
