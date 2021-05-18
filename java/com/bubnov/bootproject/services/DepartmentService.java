@@ -1,6 +1,5 @@
 package com.bubnov.bootproject.services;
 
-import com.bubnov.bootproject.entities.Country;
 import com.bubnov.bootproject.entities.Department;
 import com.bubnov.bootproject.repositories.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;

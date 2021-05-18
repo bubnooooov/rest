@@ -24,6 +24,10 @@ public class Manager {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "hire_date",                   nullable = false) private Date hireDate;
 
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.DETACH})
+    @JoinColumn(name = "job_id",                  nullable = false)
+    private Job jobNameID;
+
     public Manager() { }
 
     public Manager(String firstName, String lastName, String email, String phoneNumber,

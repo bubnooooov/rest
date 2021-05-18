@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Locale;
 
 @RestController
-@RequestMapping("/api/locations/")
+@RequestMapping("/api/locations")
 public class LocationRESTController {
 
     private LocationService locationService;

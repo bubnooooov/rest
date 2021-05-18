@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Locale;
 
 @RestController
-@RequestMapping("/api/countries/")
+@RequestMapping("/api/countries")
 public class CountryRESTController {
 
     private CountryService countryService;

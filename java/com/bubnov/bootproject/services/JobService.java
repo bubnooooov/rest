@@ -18,27 +18,22 @@ public class JobService {
         this.repository = repository;
     }
 
-    public List<Job> findAllCountries() {
+    public List<Job> findAllJobs() {
         return repository.findAll();
     }
 
     public Job findJobById(String id) {
         Optional<Job> job = repository.findById(id);
-        return job.orElseGet(Job::new);
+        if (job.isPresent()) return job.get();
+        else throw new NullPointerException("Job with id " + id + " not found in database");
     }
 
     public void saveOrUpdateJob(Job job) {
         repository.save(job);
     }
 
-    public boolean deleteJob(String id) {
+    public void deleteJob(String id) {
         Job job = findJobById(id);
-
-        if (job != null) {
-            repository.delete(job);
-            return true;
-        }
-
-        else return false;
+        repository.delete(job);
     }
 }

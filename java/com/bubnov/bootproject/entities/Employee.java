@@ -1,6 +1,5 @@
 package com.bubnov.bootproject.entities;
 
-
 import lombok.Data;
 
 import javax.persistence.*;
@@ -12,6 +11,10 @@ import java.util.Date;
 public class Employee {
 
     @Id
+    // already in my db exist 206 entity, => initialValue = 207
+    @SequenceGenerator(name = "jpaSequenceEmployee", sequenceName = "JPA_SEQUENCE_Employee",
+                       allocationSize = 1, initialValue = 207)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "jpaSequenceEmployee")
     @Column(name = "employee_id",    length = 6)
     private int employeeID;
 

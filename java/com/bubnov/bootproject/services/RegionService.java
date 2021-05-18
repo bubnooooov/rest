@@ -14,13 +14,9 @@ public class RegionService {
     private RegionRepository repository;
 
     @Autowired
-    public void setRepository(RegionRepository repository) {
-        this.repository = repository;
-    }
+    public void setRepository(RegionRepository repository) { this.repository = repository; }
 
-    public List<Region> findAllRegions() {
-        return repository.findAll();
-    }
+    public List<Region> findAllRegions() { return repository.findAll(); }
 
     public Region findRegionById(int id) {
         Optional<Region> region = repository.findById(id);
